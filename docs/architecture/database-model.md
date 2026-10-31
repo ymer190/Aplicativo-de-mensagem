@@ -33,6 +33,7 @@ Não está previsto um servidor backend separado na primeira versão. A aplicaç
 8. `owner` e `admin` podem administrar canais privados sem receber acesso automático ao conteúdo das mensagens.
 9. Para ler ou enviar mensagens em canal privado, `owner` e `admin` também precisam ser participantes.
 10. Os dados de uma empresa não podem ser acessados por usuários de outra empresa.
+11. Ao criar um canal privado, o criador será automaticamente cadastrado como participante em `channel_members`.
 
 ## 4. Modelo entidade-relacionamento
 
@@ -174,7 +175,7 @@ Regras:
 - Canal público: todos os membros ativos da empresa podem visualizar o canal e suas mensagens.
 - Canal privado: somente participantes cadastrados em `channel_members` podem visualizar o conteúdo e enviar mensagens.
 - `owner` e `admin` podem administrar metadados e participantes sem que isso conceda acesso às mensagens.
-- O criador do canal não recebe, por esse fato isolado, uma permissão implícita de leitura. A inclusão automática do criador como participante de canal privado ainda precisa ser decidida antes da implementação.
+- Ao criar um canal privado, o criador deve ser inserido automaticamente em `channel_members` na mesma operação transacional de criação do canal. Sua permissão de leitura decorre desse vínculo explícito, e não de uma exceção baseada no papel de criador.
 
 ### 5.5 `channel_members`
 
@@ -304,10 +305,9 @@ A entrega de mensagens em tempo real deverá respeitar a mesma autorização apl
 
 ## 12. Pontos a confirmar antes da implementação
 
-1. **Criador de canal privado:** decidir se o criador será adicionado automaticamente como participante. A regra de negócio já aprovada determina que ser criador ou administrador não concede leitura automaticamente.
-2. **Gestão de membros:** detalhar o fluxo de convite, aceite e suspensão, sem permitir vínculo de um usuário a mais de uma empresa.
-3. **Exclusão e retenção:** definir por quanto tempo mensagens e canais excluídos logicamente serão mantidos.
-4. **Políticas RLS e Realtime:** escrever e testar as políticas concretas antes de liberar o acesso pelo cliente.
+1. **Gestão de membros:** detalhar o fluxo de convite, aceite e suspensão, sem permitir vínculo de um usuário a mais de uma empresa.
+2. **Exclusão e retenção:** definir por quanto tempo mensagens e canais excluídos logicamente serão mantidos.
+3. **Políticas RLS e Realtime:** escrever e testar as políticas concretas antes de liberar o acesso pelo cliente.
 
 ## 13. Critérios de aceite da Issue #37
 
@@ -317,6 +317,7 @@ A entrega de mensagens em tempo real deverá respeitar a mesma autorização apl
 - [x] Papéis e permissões iniciais definidos.
 - [x] Canais públicos e privados definidos.
 - [x] Política de privacidade para mensagens privadas definida.
+- [x] Regra de inclusão automática do criador como participante de canal privado definida.
 - [x] Convenções de nomes, chaves e timestamps definidas.
 - [ ] Documento revisado e aprovado pela equipe.
 - [ ] Modelo físico e políticas RLS implementados em etapa própria.
