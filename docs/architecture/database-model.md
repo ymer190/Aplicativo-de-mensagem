@@ -315,8 +315,8 @@ A entrega de mensagens em tempo real deverá respeitar a mesma autorização apl
 - [x] Política de privacidade para mensagens privadas definida.
 - [x] Regra de inclusão automática do criador como participante de canal privado definida.
 - [x] Convenções de nomes, chaves e timestamps definidas.
-- [ ] Documento revisado e aprovado pela equipe.
-- [ ] Modelo físico e políticas RLS implementados em etapa própria.
+- [x] Documento revisado e aprovado pela equipe.
+- [x] Modelo físico e políticas RLS implementados em etapa própria.
 
 ## 14. Referências
 
