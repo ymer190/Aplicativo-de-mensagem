@@ -1,9 +1,5 @@
 # Arquitetura inicial e modelo de dados — Connexa
 
-> Documento da Issue #37 — [BACK-END] Definir arquitetura inicial e modelo de dados do Connexa.  
-> Status: proposta consolidada para revisão.  
-> Escopo: primeira versão do produto, com foco em comunicação interna por empresas, canais e mensagens.
-
 ## 1. Objetivo
 
 Definir a arquitetura inicial do Connexa e o modelo de dados mínimo para suportar autenticação, isolamento entre empresas, perfis, papéis de usuário, canais públicos e privados e mensagens.
